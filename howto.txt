@@ -1,0 +1,24 @@
+operations terminal:
+examples
+python main.py  start --create_files
+expired products
+python main.py  buy --product_name tomaat --purchase_price 1.90 --amount 7 --expires 2022-08-25 --state true
+python main.py  buy --product_name banaan --purchase_price 1.90 --amount 7 --expires 2022-08-25 --state true
+python main.py  buy --product_name kiwi --purchase_price 0.90 --amount 4 --expires 2023-08-25 --state true
+python main.py  buy --product_name manderijn --purchase_price 1.45 --amount 1 --expires 2024-08-25 --state true  
+
+
+python main.py  sold --b tomaat --sd 2022-09-01 --sp 5.00 --amount 2
+python main.py  sold --b tomaat --sd 2022-08-21 --sp 5.00 --amount 2
+python main.py  sold --b banaan --sd 2022-08-21 --sp 5.00 --amount 4
+
+
+python main.py inventory
+python main.py inventory --advance_time 1
+python main.py revenue
+python main.py revenue --advance_time 1
+python main.py revenue --by_date 2022-08-25
+python main.py profit
+python main.py profit_today 
+python main.py profit_by_date bestaat nog niet
+ 
