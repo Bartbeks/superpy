@@ -15,12 +15,9 @@ class Reports():
 
 
     global revenue
-
     """report bought""" 
 
-    def report_inventory(self):
-  
-             
+    def report_inventory(self):             
             with open(BOUGHT_PATH ,"r") as csvfile:
                 temp_inventory_file = tempfile.NamedTemporaryFile(mode="w", delete=False, newline='')
                 data = list(csvfile)
@@ -42,8 +39,7 @@ class Reports():
                     reader = csv.DictReader(file)
                     df = pd.read_csv(report_inventory_path)
                     for row in reader:                       
-                        pd.options.display.max_columns = len(df.columns)
-                        
+                        pd.options.display.max_columns = len(df.columns)                       
                     if len(df)>0:
                         df.to_csv('file_name.csv', encoding='utf-8')
                         print(df)
@@ -58,8 +54,7 @@ class Reports():
             date_list = []
         for line in data[1:]:          
             if arg_date == line.split(',')[2].strip():
-                date_list.append(line)
-           
+                date_list.append(line)          
         with open(report_inventory_date, "w") as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=COLS, lineterminator='\n')
             writer.writeheader()
@@ -82,9 +77,8 @@ class Reports():
             else:
                 print(df)
 
-    def report_expired(self,what2do, date):
 
-
+    def report_expired(self,what2do, date)
         with open(report_inventory_path) as file:
             reader = csv.DictReader(file)
             df = pd.read_csv(report_expired_products)
@@ -131,8 +125,7 @@ class Reports():
             if revenue == 0 and sender != 'by-range':
                 return 0
             if revenue > 0:
-                return revenue
-                   
+                return revenue                   
 
 
     def revenue_all(self):
@@ -150,9 +143,7 @@ class Reports():
             return revenue 
 
 
-    def revenue_number_of_days( self, argdate, sender="none"):
-        # return 10
-        
+    def revenue_number_of_days( self, argdate, sender="none"):     
         with open(SOLD_FILE, "r") as csvfile:
             i = 0
             revenue = 0
@@ -180,8 +171,6 @@ class Reports():
    
     def calc_profit_by_range( self, start_date, end_date, 
     sender="none"):
-        
-        # dates = pd.date_range(start=start_date, end=end_date)
         i = 0
         j = 0
         revenue = 0
@@ -191,8 +180,7 @@ class Reports():
             count = Reports.revenue_number_of_days("self",day,'by-range')
             if not count is None:
                 revenue = i + count
-                i = revenue
-              
+                i = revenue              
         for day in pd.date_range(start=start_date, end=end_date):
             count_inkoop = Reports.purchased_products_by_date("self",day,'by-range')
             if  not count_inkoop is None:
@@ -202,10 +190,3 @@ class Reports():
         print(f" Bought {start_date} till {end_date}: € {purchaced}")
         print(f" Sold {start_date} till {end_date}: € {revenue}")
         print(f" Total Profit for {start_date} till {end_date}: € {profit_timerange}")
-
-      
-     
-
-
-
-                    

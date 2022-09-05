@@ -6,7 +6,7 @@ from decimal import Decimal
 
 bought_file = Path.cwd()/"data/bought.csv"
 today = datetime.now()
-# COLS = ["ID","PRODUCT","SELLDATE,BUYPRICE","AMOUNT","EXPERATIONDATE","STATE"]
+
 
 def buy( product_name, purchase_price,amount,expires,state):
      # sourcery skip: hoist-statement-from-if, none-compare, remove-redundant-if, use-named-expression

@@ -2,9 +2,7 @@ import csv
 from pathlib import Path
 
 
-def create_all_files( ):
-
-    
+def create_all_files( ):   
         report_inventory_path = Path.cwd()/"reports/report_inventory.csv"
         report_inventory_date = Path.cwd()/"reports/report_inventory_date.csv"
         report_expired_products = Path.cwd()/"reports/report_expired_product.csv"
@@ -16,12 +14,10 @@ def create_all_files( ):
         for path in path_list:
             if path.is_file(): 
                 print(f" {path} is OK")
-
         for path in path_list:
                 with open(path , "w") as csvfile:
                         if path ==sold_path:
                                 writer = csv.DictWriter(csvfile, fieldnames=COLS_SOLD,lineterminator="\n")
-                                            # writer.writerow({})
                         else:
                                 writer = csv.DictWriter(csvfile, fieldnames=COLS,lineterminator="\n")
                         writer.writeheader()
