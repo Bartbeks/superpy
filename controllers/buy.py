@@ -18,9 +18,9 @@ def buy( product_name, purchase_price,amount,expires,state):
             check_product_state = Product.check_product_state(product_name)
             if check_product_state :
                 Product.update_state_in_stock("self",product_name)
-                print(f"WARNING {product_name }  Not for sale, must be removed from store !!!")
+                print(f"WARNING {product_name } Not for sale, product is expired must be removed from store !!!")
             elif not check_product_state:
-                 print(f"WARNING {product_name } Not for sale, must be removed from store !!!")
+                 print(f"WARNING {product_name } Not for sale, product is expired must be removed from store !!!")
         elif product_expires_in_stock == None:
             # eerste run
              Product.add_product("self",product_name, purchase_price,amount,expires,state)
@@ -28,5 +28,5 @@ def buy( product_name, purchase_price,amount,expires,state):
             Product.update_stock("self",product_name,int(amount))
             # update aantal in de inventaris        
      else:
-        Product.add_product(product_name, purchase_price,amount,expires,state)
+        Product.add_product("self",product_name, purchase_price,amount,expires,state)
     

@@ -21,7 +21,3 @@ Update de status als verkoopdatum is verstreken zowel bij in als verkoop
 product kan niet verkocht worden als er geen voorraad is.
 Als de voorraad kleiner is dan het aantal gevraagde producten word er melding gemaakt van het aantal nog voorradige producten
 Product kan niet verkocht worden als de verkoopdatum is versterken.
-
-Ik begrijp eerlijk gezegd niet zo goed waarom je nog een terminal interface gaat maken.
-Ik ben het in 15 jaar nog niet tegen gekomen dat een klant hier om vraagt. Het is vervelend debuggen. Heb er wel veel van opgestoken en ik snap het achterliggende idee.
-Ik had het leuker gevonden als dit in een andere vorm was gegoten.

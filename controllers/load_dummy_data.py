@@ -10,4 +10,4 @@ def load_example_data():
 ]
     for prod in dummy_data:
         prod.split()
-        Product.add_product(prod.split()[0], prod.split()[1],prod.split()[2], prod.split()[3], prod.split()[4])
+        Product.add_product("self",prod.split()[0], prod.split()[1],prod.split()[2], prod.split()[3], prod.split()[4])

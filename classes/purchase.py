@@ -105,41 +105,36 @@ class Purchase():
                     "amount": new_purchase.amount})
         Product.display("self",SOLD_FILE)
         
-         
 
-       
-        
-        
-
-    def revenue(self):
-        with open( SOLD_FILE, "r", newline="") as file:
-            data = list(file)
-            i = 0
-            for row in data[1:]:
-                row_revenue =row.split(",")[3]
-                row_revenue = row_revenue.strip('\n\r')
-                getal = Decimal(row_revenue)
-                revenue = i + getal
-                i = revenue
-            print(f'total revenues are: €.{revenue}')
-        return revenue 
+    # def revenue(self):
+    #     with open( SOLD_FILE, "r", newline="") as file:
+    #         data = list(file)
+    #         i = 0
+    #         for row in data[1:]:
+    #             row_revenue =row.split(",")[3]
+    #             row_revenue = row_revenue.strip('\n\r')
+    #             getal = Decimal(row_revenue)
+    #             revenue = i + getal
+    #             i = revenue
+    #         print(f'total revenues are: €.{revenue}')
+    #     return revenue 
 
 
-    def revenue_number_of_days(self, date):
-        with open(SOLD_FILE, "r") as csvfile:
-            data = list(csvfile)
-            i = 0
-            revenue = 0
-            for row in data[1:]:
-              if date == row.split(',')[2]:
-                    row_revenue =row.split(",")[3]
-                    row_revenue = row_revenue.strip('\n\r')
-                    getal = Decimal(row_revenue)
-                    revenue = i + getal
-                    i = revenue
-            if revenue == 0:
-                print(f'no revenue for {date} ')
-            else:
-                print(f'revenue for {date} = €.{revenue}')
-                return revenue 
+    # def revenue_number_of_days(self, date):
+    #     with open(SOLD_FILE, "r") as csvfile:
+    #         data = list(csvfile)
+    #         i = 0
+    #         revenue = 0
+    #         for row in data[1:]:
+    #           if date == row.split(',')[2]:
+    #                 row_revenue =row.split(",")[3]
+    #                 row_revenue = row_revenue.strip('\n\r')
+    #                 getal = Decimal(row_revenue)
+    #                 revenue = i + getal
+    #                 i = revenue
+    #         if revenue == 0:
+    #             print(f'no revenue for {date} ')
+    #         else:
+    #             print(f'revenue for {date} = €.{revenue}')
+    #             return revenue 
                   

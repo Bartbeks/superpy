@@ -10,7 +10,7 @@ COLS = ["id","bought_id","sell_date","sell_price","amount"]
 def sell(self, bought_id, purchase_date, purchase_price, amount):
     is_in_stock = Product.is_check_product_in_stock("self", bought_id)
     if is_in_stock:
-        expires =Product.product_expires_in_stock(bought_id)
+        expires = Product.product_expires_in_stock(bought_id)
         if expires:
             Product.update_state_in_stock("self",bought_id)
             return  print("Warning product has expired!!!, not for sale ")
