@@ -10,6 +10,8 @@ import controllers.sold as sell
 import controllers.profit as cp
 import controllers.filecreater as fc
 import controllers.load_dummy_data as ld
+import controllers.plot as plot
+from classes.reports import Reports
 
 
 
@@ -51,12 +53,17 @@ def main():  # sourcery skip: extract-method, for-append-to-extend
     revenue = subparsers.add_parser('revenue', help='get revenue of store')
     revenue.add_argument("--advance_time", help="get de revenue by  number of days in history ",type= int)
     revenue.add_argument("--by_date", help="get de revenue by date date , format 2022-08-21",type= str)
-    profit = subparsers.add_parser('profit', help='calculate profit of the store of store')
+    profit = subparsers.add_parser('profit', help='calculate profit of the store')
     profit_today = subparsers.add_parser('profit_today', help='calculate profit of the today in of store')
+    profit_by_range = subparsers.add_parser('profit_by_range', help='calculate profit of the today in of store by a range of dates')
+    profit_by_range.add_argument("--start", help="start date for profit by range, format 2022-08-21",type= str)
+    profit_by_range.add_argument("--end", help="end date for profit by range , format 2022-08-21",type= str)
+    stock_info_graphic = subparsers.add_parser('stock_info_graphic', help='info grafic of stock')
     
     args = parser.parse_args()
 
     if args.command == "start":
+        
         
         fc.create_all_files()
     
@@ -64,33 +71,30 @@ def main():  # sourcery skip: extract-method, for-append-to-extend
 
         ld.load_example_data()
 
-    
-   
     if args.command == "buy":
         buy_inventory.buy(args.product_name, args.purchase_price,args.amount,args.expires,args.state)
     
     if args.command == "sold":
-        # Purchase.sell("self",args.b, args.sd, args.sp,args.amount)
         sell.sell("self",args.b, args.sd, args.sp,args.amount)
        
     if args.command == "inventory":
         if args.advance_time:
            today = datetime.now()
            searchdate = today - timedelta(days=args.advance_time)
-           Product.report_date_inventory("self",searchdate.strftime('%Y-%m-%d'))
+           Reports.report_date_inventory("self",searchdate.strftime('%Y-%m-%d'))
         else:
-            Product.report_inventory("self")
+            Reports.report_inventory("self")
     if args.command == "revenue":
         if args.advance_time:
            today = datetime.now()
            searchdate = today - timedelta(days=args.advance_time)
-           Purchase.revenue_number_of_days("self",searchdate.strftime('%Y-%m-%d'))
+           Reports.revenue_number_of_days("self",searchdate.strftime('%Y-%m-%d'))
         if args.by_date:
            today = datetime.now()
            searchdate = args.by_date
-           Purchase.revenue_number_of_days("self",searchdate)
+           Reports.revenue_number_of_days("self",searchdate)
         else:
-            Purchase.revenue("self")
+            Reports.revenue_all("self")
     if args.command == "profit":
         cp.calc_profit("all")
         
@@ -98,6 +102,14 @@ def main():  # sourcery skip: extract-method, for-append-to-extend
         today = datetime.now()
         search_date = today.strftime('%Y-%m-%d')
         cp.calc_profit(search_date)
+    
+    if args.command == "profit_by_range":
+        Reports.calc_profit_by_range("self",args.start, args.end)
+
+    
+    if args.command == "stock_info_graphic":
+        plot.stock_plot()
+       
             
 
             # todo
