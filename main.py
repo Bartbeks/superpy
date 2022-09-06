@@ -30,10 +30,11 @@ __human_name__ = "superpy"
 
 def main():  # sourcery skip: extract-method, for-append-to-extend
     parser = argparse.ArgumentParser(prog="main.py", description="Keep track of supermarket inventory." )
-    parser.add_argument("--operation", help="operation to operate,choices=["start,buy", "sold","report_inventory"])
+    parser.add_argument("--operation", help="operation to operate"
+                   ,choices=["start,buy", "sold","report_inventory"])
     subparsers = parser.add_subparsers(dest='command')
     start = subparsers.add_parser("start", help="required to run te program")
-    dummy_data = subparsers.add_parser("dummy", help="Fills inventory with dummy data")
+    # dummy_data = subparsers.add_parser("dummy", help="Fills inventory with dummy data")
     buy = subparsers.add_parser('buy', help='store bought products in inventory')
     buy.add_argument('--product_name', help="name of product",type = str)
     buy.add_argument("--purchase_price", help="price of product", type = Decimal)
@@ -63,8 +64,8 @@ def main():  # sourcery skip: extract-method, for-append-to-extend
     if args.command == "start":     
         fc.create_all_files()
     
-    if args.command == "dummy":
-        ld.load_example_data()
+    # if args.command == "dummy":
+    #     ld.load_example_data()
 
     if args.command == "buy":
         buy_inventory.buy(args.product_name, args.purchase_price,args.amount,args.expires,args.state)
@@ -104,7 +105,15 @@ def main():  # sourcery skip: extract-method, for-append-to-extend
    
     if args.command == "stock_info_graphic":
         plot.stock_plot()
+       
+            
 
+            # todo
+            # Reporting revenue and profit over specified time periods;
+    
+
+
+        
    
 if __name__ == "__main__":
     main()

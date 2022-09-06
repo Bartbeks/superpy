@@ -7,7 +7,6 @@ from pickle import LIST
 import shutil
 import tempfile
 from pathlib import Path
-from xmlrpc.client import DateTime
 import pandas as pd
 from datetime import date, datetime
 
@@ -66,9 +65,12 @@ class Product():
             date  =datetime.today()
             formatted_date = Product.date_to_integer(date)
             data = list(file)
+            cast_date = 0
             for line in data[1:]:
-                cast_date = Product.date_to_integer(datetime.strptime(line.split(',')[5], '%Y-%m-%d'))
-                if product == line.split(',')[1].strip() and formatted_date >= cast_date:
+                cast_date = line.split(',')[5]
+                cast_date2 = datetime.strptime(cast_date.strip(),"%Y-%m-%d")
+                cast_date3 = Product.date_to_integer(cast_date2)
+                if product == line.split(',')[1].strip() and formatted_date >= cast_date3:
                     return True
             else:
                 return False

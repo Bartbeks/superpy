@@ -78,7 +78,7 @@ class Reports():
                 print(df)
 
 
-    def report_expired(self,what2do, date)
+    def report_expired(self,what2do, arg_date):
         with open(report_inventory_path) as file:
             reader = csv.DictReader(file)
             df = pd.read_csv(report_expired_products)

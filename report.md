@@ -14,6 +14,7 @@ zodat die later niet meer gecheckt hoeven te worden.
 De functies maken gebruik van de classes Product en Purchase.
 Het programma word gestart door main.py start.
 Hier worden alle files aangemaakt. Dit kan ook worden gebruikt om alles te resetten
+Eerst moeten er producten worden toegeveoegd
 Het programma houd rekening met de volgende:
 Bestaat het product
 Update aantal in voorraad zowel bij inkoop als verkoop
