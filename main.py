@@ -106,14 +106,7 @@ def main():  # sourcery skip: extract-method, for-append-to-extend
     if args.command == "stock_info_graphic":
         plot.stock_plot()
        
-            
-
-            # todo
-            # Reporting revenue and profit over specified time periods;
-    
-
-
-        
+     
    
 if __name__ == "__main__":
     main()
