@@ -11,8 +11,8 @@ def calc_profit(arg):
         profit = selling_price - purchased_price
         print( f"total sold = €.{selling_price}")     
         print( f"total profit = €.{profit}")
-    #  calculate profit for today in   store 
     
+    #  calculate profit for today in   store    
     elif arg == today.strftime('%Y-%m-%d'):
         selling_price = Reports.revenue_number_of_days("self",today.strftime('%Y-%m-%d'))
         purchased_price = Reports.purchased_products_by_date('self',today)
@@ -20,7 +20,7 @@ def calc_profit(arg):
             selling_price = 0
         elif not selling_price is None:
             profit = selling_price - purchased_price
-            breakpoint()
+            # breakpoint()
             print( f"total sold = €.{selling_price}")     
             print( f"total bought = €.{purchased_price}") 
             print(f"todays profit = €.{profit}")
