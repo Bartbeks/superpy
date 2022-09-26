@@ -48,7 +48,9 @@ class Reports():
                   
    
     def report_date_inventory(self, arg_date):
-        print(arg_date)
+       
+        """report iventory by date""" 
+       
         with open(BOUGHT_PATH, "r") as csvfile:
             data = list(csvfile)
             date_list = []
@@ -64,8 +66,8 @@ class Reports():
                         "product": row.split(',')[1],
                         "sell_date": row.split(',')[2],
                         "buy_price": row.split(',')[3],
-                            "amount": row.split(',')[4],
-                            "expiration_date": row.split(',')[5],
+                        "amount": row.split(',')[4],
+                        "expiration_date": row.split(',')[5],
                         "state": row.split(',')[6].strip()})
         with open(report_inventory_path) as file:
             reader = csv.DictReader(file)
@@ -78,8 +80,28 @@ class Reports():
                 print(df)
 
 
-    def report_expired(self,what2do, arg_date):
-        with open(report_inventory_path) as file:
+    """report with expired products"""
+
+    def report_expired(self):
+        with open(BOUGHT_PATH, "r") as csvfile:
+            data = list(csvfile)
+            date_list = []
+        for line in data[1:]:          
+            if  line.split(',')[6].strip() == "false":
+                date_list.append(line)          
+        with open(report_expired_products, "w") as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=COLS, lineterminator='\n')
+            writer.writeheader()
+            for row in date_list:
+                    writer.writerow({
+                        "id": row.split(',')[0],
+                        "product": row.split(',')[1],
+                        "sell_date": row.split(',')[2],
+                        "buy_price": row.split(',')[3],
+                        "amount": row.split(',')[4],
+                        "expiration_date": row.split(',')[5],
+                        "state": row.split(',')[6].strip()})
+        with open(report_expired_products) as file:
             reader = csv.DictReader(file)
             df = pd.read_csv(report_expired_products)
             for _ in reader:
@@ -141,9 +163,11 @@ class Reports():
                     i = revenue
             print(f'total sold products is: €.{revenue}')
             return revenue 
+ 
 
-
-    def revenue_number_of_days( self, argdate, sender="none"):     
+    def revenue_number_of_days( self, argdate, sender="none"):
+        # print(argdate, sender) 
+        
         with open(SOLD_FILE, "r") as csvfile:
             i = 0
             revenue = 0
@@ -158,7 +182,8 @@ class Reports():
                     if  arg_date[0] == row_date:                       
                         revenue = i + getal
                         i = revenue
-                  
+                
+                """report winst range of days"""                 
                 if sender == "by-range" and arg_date[0] == row_date:
                     row_revenue = row.split(",")[3].strip('\n\r')
                     getal = Decimal(row_revenue)
