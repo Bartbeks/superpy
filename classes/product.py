@@ -23,7 +23,7 @@ class Product():
                     buyPrice, amount,expires,state):
         self.id = Product.get_file_lenght("self",file_path)
         self.productName = productName
-        self.buyDate =date_setter.get_internal_date("self",int(date_setter.read_nums_of_days()))
+        self.buyDate = date_setter.get_internal_date("self",int(date_setter.read_nums_of_days()))
         self.buyPrice = buyPrice
         self.amount = amount
         self.expiration_date = expires

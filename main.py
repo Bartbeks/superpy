@@ -60,8 +60,8 @@ def main():  # sourcery skip: extract-method, for-append-to-extend
     revenue.add_argument("--advance_time", help="get de revenue by  number of days in history ",type= int)
     revenue.add_argument("--by_date", help="get de revenue by date date , format 2022-08-21",type= str) 
     profit = subparsers.add_parser('profit', help='calculate profit of the store')
-    profit_today = subparsers.add_parser('profit_today', help='calculate profit today in store')
-    profit_by_range = subparsers.add_parser('profit_by_range', help='calculate profit of the today in of store by a range of dates')
+    profit.add_argument('internal_date', help='calculate profit internal_date in store')
+    profit_by_range = subparsers.add_parser('profit_by_range', help='calculate profit by range of dates in of store ')
     profit_by_range.add_argument("--start", help="start date for profit by range, format 2022-08-21",type= str)
     profit_by_range.add_argument("--end", help="end date for profit by range , format 2022-08-21",type= str)
     expired = subparsers.add_parser('expired', help='create report of all expired products ')
@@ -154,11 +154,11 @@ def main():  # sourcery skip: extract-method, for-append-to-extend
     if args.command == "profit":
         cp.calc_profit("all")
         
-    if args.command == "profit_today":
-        today = datetime.now()
-        search_date = today.strftime('%Y-%m-%d')
-        cp.calc_profit(search_date)
-    
+        if args == "internal_date":
+            today =  date_setter.get_internal_date("self",int(date_setter.read_nums_of_days()))
+            profit_date = today.strftime('%Y-%m-%d')
+            cp.calc_profit(profit_date)
+        
     if args.command == "profit_by_range":
         """ create report profit by time range  start and end date"""
         Reports.calc_profit_by_range("self",args.start, args.end)

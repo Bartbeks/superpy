@@ -46,10 +46,9 @@ class Reports():
                     if df.empty:
                         return print('no results, please alter search and try again...')
                   
-   
+    
+    """report inventory by product certain date  arg = date"""
     def report_date_inventory(self, arg_date):
-       
-        """report iventory by date""" 
        
         with open(BOUGHT_PATH, "r") as csvfile:
             data = list(csvfile)
@@ -132,7 +131,7 @@ class Reports():
             i = 0
             revenue = 0
             for row in data[1:]:
-                formatted_date = date.strftime('%Y-%m-%d')
+                formatted_date = date
                 table_date = row.split(',')[2]
                 table_date = table_date.strip('\n\r')
                 if formatted_date == table_date:
@@ -167,7 +166,7 @@ class Reports():
 
     def revenue_number_of_days( self, argdate, sender="none"):
         # print(argdate, sender) 
-        
+       
         with open(SOLD_FILE, "r") as csvfile:
             i = 0
             revenue = 0
@@ -179,7 +178,10 @@ class Reports():
                 row_revenue = row_revenue.strip('\n\r')
                 getal = Decimal(row_revenue)            
                 if sender == "none":
-                    if  arg_date[0] == row_date:                       
+                   
+                   
+                    if  arg_date == row_date: 
+                        print (arg_date == row_date)                      
                         revenue = i + getal
                         i = revenue
                 
