@@ -14,7 +14,6 @@ import controllers.buy as buy_inventory
 import controllers.sold as sell
 import controllers.profit as cp
 import controllers.filecreater as fc
-import controllers.load_dummy_data as ld
 import controllers.plot as plot
 import controllers.validate as valid
 import controllers.date_setter as date_setter

@@ -5,7 +5,8 @@ examples
 python main.py start  ( create_files, reset files)
 
 """Set Internal date"""
-"fefault is de datum van vandaag g "
+"default is de datum van vandaag  "
+om producten in de toekomst of het verleden te kunnen kopen moet je eerst de internal datum zetten zetten
 
 "twee dagen vooruit"
 python main.py setdate --num_of_days 2
@@ -17,7 +18,8 @@ python main.py  buy
 
 ADD Products
 "Note expires moet in de toekomst liggen"
-
+"om producten in de toekomst of het verleden te kunnen kopen moet je eerst de internal datum zetten zetten
+"
 python main.py  buy --product_name tomaat --purchase_price 1.90 --amount 7 --expires 2022-08-25 
 python main.py  buy --product_name banaan --purchase_price 1.90 --amount 7 --expires 2022-08-25 
 python main.py  buy --product_name kiwi --purchase_price 0.90 --amount 4 --expires 2023-08-25 
@@ -30,6 +32,7 @@ python main.py  sold --product appel  --sell_price 5.00 --amount 4
 python main.py  sold --product kiwi  --sell_price 5.00 --amount 4
 
 "Reports"
+
 python main.py inventory
 python main.py inventory --advance_time  1  (een dag terug(--advance_time 1 = een dag voorruit )
 python main.py revenue
