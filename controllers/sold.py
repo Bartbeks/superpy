@@ -7,7 +7,7 @@ SOLD_FILE = Path.cwd()/"data/sold.csv"
 COLS = ["id","bought_id","sell_date","sell_price","amount"]
 expires = False
 
-
+"""sellProduct  "self empty arg", product, price, amount"""
 def sell(self, bought_id, purchase_price, amount):
     """Check if product is in stock"""
     is_in_stock = Purchase.is_check_product_in_stock("self", bought_id)
@@ -27,6 +27,8 @@ def sell(self, bought_id, purchase_price, amount):
                  expires = Product.product_expires_in_stock(product['id'])
                  break                 
             elif x == "no":
+                
+
                 print("next product")              
             else:
                print("Error: Answer must be Yes or No")

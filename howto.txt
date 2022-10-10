@@ -5,35 +5,42 @@ examples
 python main.py start  ( create_files, reset files)
 
 """Set Internal date"""
+"fefault is de datum van vandaag g "
 
+"twee dagen vooruit"
 python main.py setdate --num_of_days 2
+"twee dagen achteruit"
+python main.py setdate --num_of_days -2
 
 python main.py  buy
 
 
 ADD Products
+"Note expires moet in de toekomst liggen"
 
 python main.py  buy --product_name tomaat --purchase_price 1.90 --amount 7 --expires 2022-08-25 
 python main.py  buy --product_name banaan --purchase_price 1.90 --amount 7 --expires 2022-08-25 
 python main.py  buy --product_name kiwi --purchase_price 0.90 --amount 4 --expires 2023-08-25 
-python main.py  buy --product_name manderijn --purchase_price 1.45 --amount 10 --expires 2024-08-25   
+python main.py  buy --product_name appel --purchase_price 1.45 --amount 10 --expires 2024-08-25   
 
-Buy Products
-python main.py  sold --b tomaat --sp 5.00 --amount 2
-python main.py  sold --b bananen --sd 2022-08-21 --sp 5.00 --amount 2
-python main.py  sold --b appel --sd 2022-08-21 --sp 5.00 --amount 4
-python main.py  sold --b kiwi --sd 2022-08-21 --sp 5.00 --amount 4
+sell Products
+python main.py  sold --product tomaat --sell_price 5.00 --amount 2
+python main.py  sold --product bananen --sell_price 5.00 --amount 2
+python main.py  sold --product appel  --sell_price 5.00 --amount 4
+python main.py  sold --product kiwi  --sell_price 5.00 --amount 4
 
-
+"Reports"
 python main.py inventory
 python main.py inventory --advance_time  1  (een dag terug(--advance_time 1 = een dag voorruit )
 python main.py revenue
-python main.py revenue --advance_time 1
+python main.py revenue --advance_time 1 
 python main.py revenue --by_date 2022-09-02
+python main.py revenue_by_range --start 28-09-2022 --end 06-10-2022
+
+
 python main.py profit
 python main.py profit_today 
-
-
+python main.py profit_by_range --start 28-09-2022 --end 06-10-2022
 python main.py expired products
 python main.py graphic stock_graphic 
  

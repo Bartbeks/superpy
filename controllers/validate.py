@@ -10,6 +10,7 @@ def validate_date(arg_date):
     try:
             year, month, day = arg_date.split('-')
             tmp_date = datetime(int(year), int(month), int(day))
+         
             present = datetime.now()
             present.strftime('%Y-%m-%d')
             if tmp_date <= present:
