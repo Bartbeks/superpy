@@ -12,8 +12,9 @@ om producten in de toekomst of het verleden te kunnen kopen moet je eerst de int
 python main.py setdate --num_of_days 2
 "twee dagen achteruit"
 python main.py setdate --num_of_days -2
+"datum vandaag"
+python main.py setdate --num_of_days 0
 
-python main.py  buy
 
 
 ADD Products

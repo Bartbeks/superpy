@@ -31,7 +31,7 @@ def validate_date(arg_date):
 def validate_decimal(price):
     try: 
         purchase_price = Decimal(price)
-        print(purchase_price)
+        
         if purchase_price >=0:
             return True
         if purchase_price < 0:
