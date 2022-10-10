@@ -34,4 +34,4 @@ def create_all_files( ):
         # for path in path_list:
         #     with open(path , "r") as csvfile:
         #         reader = csv.DictReader(csvfile, fieldnames=COLS_SOLD,lineterminator="\n")
-        return
+        return print("all files created")
