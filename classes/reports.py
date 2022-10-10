@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
 import shutil
@@ -106,7 +107,7 @@ class Reports():
             for _ in reader:
                 pd.options.display.max_columns = len(df.columns)
             if df.empty:
-                print('no products')
+                print('no expired products')
             else:
                 print(df)
 
@@ -130,15 +131,18 @@ class Reports():
             data = list(csvfile)
             i = 0
             revenue = 0
+    
             for row in data[1:]:
-                formatted_date = date
+                formatted_date = date.strftime('%Y-%m-%d')
                 table_date = row.split(',')[2]
-                table_date = table_date.strip('\n\r')
+              
                 if formatted_date == table_date:
                     row_revenue = row.split(",")[3]
                     row_revenue = row_revenue.strip('\n\r')
                     revenue = i + Decimal(row_revenue)
-                    i = revenue         
+                    i = revenue
+           
+            
             if revenue == 0 and sender == 'by-range':
                 return 0
             if revenue > 0 and sender == 'by-range':
@@ -164,51 +168,63 @@ class Reports():
             return revenue 
  
 
-    def revenue_number_of_days( self, argdate, sender="none"):
-        # print(argdate, sender) 
+    def revenue_number_of_days( self, argdate, sender):
        
+       
+      
         with open(SOLD_FILE, "r") as csvfile:
             i = 0
             revenue = 0
             data = list(csvfile)           
             for row in data[1:]:
                 row_date = row.split(',')[2]
+                
                 arg_date = str(argdate).split(' ')
                 row_revenue = row.split(",")[3]
                 row_revenue = row_revenue.strip('\n\r')
-                getal = Decimal(row_revenue)            
+                getal = Decimal(row_revenue)
+                    
                 if sender == "none":
-                   
-                   
-                    if  arg_date == row_date: 
-                        print (arg_date == row_date)                      
+                    if  argdate == row_date:                                        
                         revenue = i + getal
                         i = revenue
-                
-                """report winst range of days"""                 
+                                      
+                """report omzet range of days""" 
+                          
                 if sender == "by-range" and arg_date[0] == row_date:
                     row_revenue = row.split(",")[3].strip('\n\r')
                     getal = Decimal(row_revenue)
                     revenue = i + getal
                     i = revenue
             if sender=="none":
+              
                 return revenue
             else:
+               
                 return revenue
    
     def calc_profit_by_range( self, start_date, end_date, 
     sender="none"):
+        " convert string to dateobject"
+        date_object_start = datetime.strptime(start_date, '%d-%m-%Y').date()
+        date_object_end = datetime.strptime(end_date, '%d-%m-%Y').date()
+       
         i = 0
         j = 0
         revenue = 0
         purchaced = 0
         revenue = 0
-        for day in pd.date_range(start=start_date, end=end_date):
+     
+        
+        "voor elke dag in deze range bereken de profit "
+        datelist = pd.date_range(start=date_object_start, end=date_object_end )
+        for day in datelist:
+          
             count = Reports.revenue_number_of_days("self",day,'by-range')
             if not count is None:
                 revenue = i + count
                 i = revenue              
-        for day in pd.date_range(start=start_date, end=end_date):
+        for day in datelist:
             count_inkoop = Reports.purchased_products_by_date("self",day,'by-range')
             if  not count_inkoop is None:
                 purchaced = j + count_inkoop
@@ -217,3 +233,32 @@ class Reports():
         print(f" Bought {start_date} till {end_date}: € {purchaced}")
         print(f" Sold {start_date} till {end_date}: € {revenue}")
         print(f" Total Profit for {start_date} till {end_date}: € {profit_timerange}")
+
+    
+    
+    def calc_revenue_by_range( self, start_date, end_date, sender="none"):
+        " convert string to dateobject"
+        date_object_start = datetime.strptime(start_date, '%d-%m-%Y').date()
+        date_object_end = datetime.strptime(end_date, '%d-%m-%Y').date()
+       
+        i = 0
+        j = 0
+        revenue = 0
+        purchaced = 0
+        revenue = 0
+     
+        
+        "voor elke dag in deze range bereken de omzet "
+        datelist = pd.date_range(start=date_object_start, end=date_object_end )
+        for day in datelist:
+          
+            count = Reports.revenue_number_of_days("self",day,'by-range')
+            if not count is None:
+                revenue = i + count
+                i = revenue              
+       
+       
+       
+        print(f" revenue for {start_date} till {end_date}: € {revenue}")
+       
+
